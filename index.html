@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misinformation Spread Tracker | Advanced Database Project</title>
+    
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fa-solid fa-circle-nodes"></i> Spread Tracker</h2>
+                <p>Neo4j Graph Analysis System</p>
+            </div>
+
+            <div class="control-panel">
+                <h3><i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm Nội dung</h3>
+                <div class="input-group">
+                    <input type="text" id="search-input" placeholder="VD: sầu riêng, ufo, fakenews...">
+                    <button id="btn-search" class="btn-primary" style="margin-top: 10px; background-color: #f59e0b; color: #000;">
+                        Quét Full-Text Index
+                    </button>
+                </div>
+            </div>
+
+            <div class="control-panel">
+                <h3>Bộ lọc Truy vết Mạng lưới</h3>
+                <div class="input-group">
+                    <input type="text" id="post-id-input" placeholder="Nhập ID Bài đăng gốc...">
+                </div>
+                <div class="input-group">
+                    <label for="depth-slider">Độ sâu lan truyền: <span id="depth-value" class="highlight-text">F5</span></label>
+                    <input type="range" id="depth-slider" min="1" max="10" value="5" class="slider">
+                </div>
+                <button id="btn-load-graph" class="btn-primary">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i> Vẽ cây lan truyền
+                </button>
+            </div>
+
+            <div class="leaderboard-panel">
+                <h3><i class="fa-solid fa-fire"></i> Top 5 Phát tán (F0)</h3>
+                <ul id="top-spreaders-list" class="ranking-list"></ul>
+                
+                <h3 style="margin-top: 20px;"><i class="fa-solid fa-hashtag"></i> Top Trending Hashtags</h3>
+                <ul id="top-hashtags-list" class="ranking-list"></ul>
+
+                <h3 style="margin-top: 20px;"><i class="fa-solid fa-globe"></i> Nguồn phát tán (Domains)</h3>
+                <ul id="top-domains-list" class="ranking-list"></ul>
+            </div>
+        </aside>
+
+        <main class="canvas-wrapper">
+            <div id="network-canvas">
+                <div class="empty-state">
+                    <i class="fa-solid fa-share-nodes"></i>
+                    <p>Sẵn sàng phân tích mạng lưới lan truyền tin giả</p>
+                    <small>Nhấn nút bên trái để bắt đầu truy vết từ Neo4j Aura Cloud</small>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
