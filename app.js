@@ -1,5 +1,5 @@
 // ĐÃ TRỎ VỀ SERVER CLOUD RENDER CỦA NHÓM
-const API_BASE_URL = 'https://project-advanced-db-1.onrender.com/api/network';
+const API_BASE_URL = 'https://project-advanced-db.onrender.com/api/network';
 let network = null;
 
 const btnLoadGraph = document.getElementById('btn-load-graph');
