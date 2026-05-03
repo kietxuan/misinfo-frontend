@@ -1,5 +1,5 @@
 
-const API_BASE_URL = 'https://project-advanced-db.onrender.com/api/network';
+const API_BASE_URL = 'http://127.0.0.1:8000/api/network';
 let network = null;
 
 const btnLoadGraph = document.getElementById('btn-load-graph');
@@ -15,6 +15,7 @@ const searchInput = document.getElementById('search-input');
 const topSpreadersList = document.getElementById('top-spreaders-list');
 const topHashtagsList = document.getElementById('top-hashtags-list');
 const topDomainsList = document.getElementById('top-domains-list');
+const pageRankList = document.getElementById('pagerank-list');
 
 depthSlider.addEventListener('input', (e) => {
     depthValueDisplay.innerText = `F${e.target.value}`;
@@ -58,6 +59,12 @@ function loadAllDashboards() {
     fetchAndRenderList('/top-domains', topDomainsList, (item) => `
         <div class="ranking-info"><span class="ranking-account">${item.domain}</span></div>
         <span class="badge-danger" style="background:#8b5cf6;">${item.count}</span>
+    `);
+
+    // Đưa đoạn này vào trong hàm loadAllDashboards():
+    fetchAndRenderList('/pagerank', pageRankList, (item, i) => `
+        <div class="ranking-info"><span class="ranking-account">#${i + 1} ${item.username}</span></div>
+        <span class="badge-danger" style="background:#a855f7;">PR: ${item.score}</span>
     `);
 }
 
@@ -115,3 +122,4 @@ btnLongestChain.addEventListener('click', () => {
 });
 
 document.addEventListener('DOMContentLoaded', loadAllDashboards);
+
